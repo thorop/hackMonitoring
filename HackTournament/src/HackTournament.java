@@ -16,7 +16,7 @@ public class HackTournament {
  
         context.addServlet(new ServletHolder(new SeeTournamentServlet()),"/*");
         context.addServlet(new ServletHolder(new AddPlayerServlet()),"/addPlayer/*");
-        context.addServlet(new ServletHolder(new ResetTournamentServlet()),"/resetTournament/*");
+        context.addServlet(new ServletHolder(new ResetTournamentServlet()),"/reset/*");
         context.addServlet(new ServletHolder(new StartTournamentServlet()), "/startTournament");
         
         
