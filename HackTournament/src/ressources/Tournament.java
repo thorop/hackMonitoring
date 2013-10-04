@@ -3,14 +3,51 @@ package ressources;
 import java.util.HashSet;
 import java.util.Set;
 
+import simulator.Simulator;
+
 
 public class Tournament {
 	protected Set<Player> players = new HashSet<Player>();
 	protected boolean isStarted = false;
-	protected boolean isFinsished = false;
+	protected boolean isFinished = false;
 	protected String winner = null;
 	protected int currentRound = 0;
 	protected Round[] rounds;
+	protected Bracket bracket;
+	
+	public int getNbOfPlayers(){
+		return players.size();
+	}
+	
+	public Set<Player> getPlayers(){
+		return players;
+	}
+	
+	public boolean hasStarted(){
+		return isStarted;
+	}
+	
+	public boolean isFinished(){
+		return isFinished;
+	}
+	
+	public Round[] getRounds(){
+		return rounds;
+	}
+	
+	public void clearTournament(){
+		for(int i = 0; i < rounds.length; i++){
+			if(rounds[i] != null){
+				rounds[i].clearRound();
+			}
+		}
+		players.clear();
+		isStarted = false;
+		isFinished = false;
+		winner = null;
+		currentRound = 0;
+		Simulator.reset();
+	}
 	
 	public boolean addPlayer(String name){
 		Player player = new Player(name);
@@ -34,7 +71,7 @@ public class Tournament {
 	}
 	
 	protected void initializeTournament(){
-		int nbOfRound = Math.min(players.size() / 2, (players.size() + 1) /2);
+		int nbOfRound = (players.size() / 2 )+ (players.size() % 2);
 		rounds = new Round[nbOfRound];
 		initializeNextRound();
 	}
@@ -44,6 +81,7 @@ public class Tournament {
 		currentRound ++;
 		if(currentRound > rounds.length-1){//Game is finished
 			winner = rounds[rounds.length - 1].getWinners()[0].name;//Ugly as *******
+			isFinished = true;
 		}else{
 			initializeNextRound();
 		}
@@ -62,6 +100,10 @@ public class Tournament {
 	
 	protected void createRound(Player[] players){
 		rounds[currentRound] = Round.createRound(this,players);
+	}
+	
+	public String getWinner(){
+		return winner;
 	}
 	
 	

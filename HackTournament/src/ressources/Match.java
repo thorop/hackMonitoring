@@ -17,7 +17,17 @@ public class Match {
 	}
 	
 	public static Match getNullMatch(Player player, Player nullPlayer, int position){
-		return new Match(player,nullPlayer, null, position);
+		return new Match(player,nullPlayer, position);
+	}
+	
+	protected Match(Player player1, Player player2, int position){
+		this.player1 = player1;
+		this.player2 = player2;
+		this.round = null;
+		isFinished = true;
+		winner = player1;
+		this.position = position;
+		
 	}
 	
 	public Player getWinner(){
@@ -26,6 +36,10 @@ public class Match {
 	
 	public String getPlayer1(){
 		return player1.name;
+	}
+	
+	public String getPlayer2(){
+		return player2.name;
 	}
 	
 	public void setPlayer1Winner(){
@@ -47,5 +61,9 @@ public class Match {
 			}
 			
 		}
+	}
+	
+	public String toString(){
+		return "player1 : "+player1.name+" player2 : "+player2.name;
 	}
 }

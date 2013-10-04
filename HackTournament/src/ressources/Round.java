@@ -1,10 +1,13 @@
 package ressources;
 
+import java.util.Vector;
+
 public class Round {
 	protected Match[] matches;
 	protected Integer remainingMatches;
 	protected Tournament tournament;
 	protected Player[] winners;
+	protected Vector<Monitor> monitors = new Vector<Monitor>();
 	
 	public static Round createRound(Tournament tournament, Player[] players){
 		Round newRound = new Round(tournament);
@@ -37,9 +40,29 @@ public class Round {
 		
 	}
 	
+	public void clearRound(){
+		matches = null;
+		remainingMatches = 0;
+		tournament = null;
+		winners = null;
+		stopMonitoring();
+	}
+	
+	public Match[] getMatches(){
+		return matches;
+	}
+	
 	public void startMonitoring(Match match){
-		//TODO start monitoring the match
-		//TODO create a vector of monitored tasks (use when we want to kill the tournament)
+		Monitor monitor = new Monitor(match);
+		monitor.start();
+		monitors.add(monitor);
+	}
+	
+	public void stopMonitoring(){
+		for(Monitor monitor : monitors){
+			monitor.stopThread();
+		}
+		monitors.clear();
 	}
 	
 	public void notifyMatchIsFinsish(Match match){

@@ -11,11 +11,15 @@ public class Player {
 	
 	public Player(String name){
 		this.name = name;
-		playerId = "";
+		playerId = "NULL";
 	}
 	
 	public static Player getNullPlayer(){
 		return new Player("");
+	}
+	
+	public int hashCode(){
+		return name.hashCode();
 	}
 	
 }
