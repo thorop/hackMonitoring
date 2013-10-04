@@ -1,0 +1,17 @@
+package ressources;
+
+public class Match {
+	protected String players1;
+	protected String players2;
+	protected String winner;
+	protected boolean isFinished = false;
+	
+	
+	public Match(String players1, String players2){
+		this.players1 = players1;
+		this.players2 = players2;
+	}
+	
+	public int 
+	
+}

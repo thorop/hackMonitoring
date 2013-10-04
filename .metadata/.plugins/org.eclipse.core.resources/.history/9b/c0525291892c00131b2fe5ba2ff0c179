@@ -1,0 +1,17 @@
+package ressources;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class Tournament {
+	protected Set<Player> players = new HashSet<Player>();
+	protected boolean isStarted = false;
+	
+	public void startTournament() throws AlreadyStarted{
+		isStarted = true;
+	}
+	
+	class AlreadyStarted extends Exception{
+		
+	}
+}

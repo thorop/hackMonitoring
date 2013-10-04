@@ -1,0 +1,8 @@
+package ressources;
+
+public class Matches {
+	protected String players1;
+	protected String players2;
+	protected int result;
+	protected boolean isFinished = false;
+}

@@ -1,0 +1,9 @@
+package ressources;
+
+public class TournamentsCluster {
+	
+	private boolean isStarted = false;
+	public static HashMap<String, Tournament> tournaments = new HashMap<String, Tournament>();
+	
+	
+}
