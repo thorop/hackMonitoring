@@ -16,7 +16,7 @@ public class Simulator{
 			int nbOfRemainingTry = requests.get(playerName) - 1;
 			if(nbOfRemainingTry == 0){
 				requests.remove(playerName);
-				return ( (int) Math.random()*2 );
+				return Math.random() > 0.5 ? 1 : 0;
 			}else{
 				requests.put(playerName,nbOfRemainingTry);
 				return -1;
